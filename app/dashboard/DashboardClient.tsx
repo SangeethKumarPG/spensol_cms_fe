@@ -70,6 +70,7 @@ export default function DashboardClient() {
       <ImageGrid
         images={images}
         section={section}
+        siteName={siteName}
         onDelete={fetchImages}
       />
     </>

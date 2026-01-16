@@ -7,19 +7,24 @@ import Image from "next/image";
 interface ImageGridProps {
   images: SiteImage[];
   section: string;
+  siteName: string;
   onDelete: () => void;
 }
 
 export default function ImageGrid({
   images,
   section,
+  siteName,
   onDelete,
 }: ImageGridProps) {
-  const siteName = sessionStorage.getItem("siteName");
-
   const remove = async (id: number): Promise<void> => {
-    await api.delete(`/sites/${siteName}/${section}/${id}`);
-    onDelete();
+    try {
+      await api.delete(`/sites/${siteName}/images/${section}/${id}`);
+      onDelete();
+    } catch (error) {
+      console.error("Failed to delete image:", error);
+      alert("Failed to delete image");
+    }
   };
 
   return (
