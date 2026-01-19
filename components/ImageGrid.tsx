@@ -19,7 +19,7 @@ export default function ImageGrid({
 }: ImageGridProps) {
   const remove = async (id: number): Promise<void> => {
     try {
-      await api.delete(`/sites/${siteName}/images/${section}/${id}`);
+      await api.delete(`/sites/${siteName}/${section}/${id}`);
       onDelete();
     } catch (error) {
       console.error("Failed to delete image:", error);
